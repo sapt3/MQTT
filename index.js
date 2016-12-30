@@ -4,7 +4,10 @@ var mqtt = require('mqtt');
 var server = new Hapi.Server();
 var port = Number(process.env.PORT || 4444);
 
-server.connection({ port: port, routes: { cors: true } });
+server.connection(
+  { port: port,
+    routes: { cors: true }
+  });
 
 var client  = mqtt.connect('mqtt://test.mosquitto.org:1883');
 
