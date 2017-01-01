@@ -2,7 +2,7 @@ var Hapi = require('hapi'); //Fetch the modules required to set up the server
 var mqtt = require('mqtt'); //Fetch the modules required to establish the MQTT protocol
 
 var server = new Hapi.Server(); //Set up a new Server
-var port = Number(process.env.PORT || 4444); //Define the port no. NOTE: The default is 4444 for local servers otherwiser it is set by default from Heroku
+var port = Number(process.env.PORT || 3000); //Define the port no. NOTE: The default is 4444 for local servers otherwiser it is set by default from Heroku
 
 //Set up the connection and define the variables
 server.connection({
