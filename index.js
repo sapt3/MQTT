@@ -11,7 +11,7 @@ server.connection({
       cors: true }
   });
 
-var client  = mqtt.connect('mqtt://hc.iandwe.in'); //Set up a client which connects to the broker i.e. test.mosquitto.org on port 1883
+var client  = mqtt.connect('mqtt://test.mosquitto.org:1883'); //Set up a client which connects to the broker i.e. test.mosquitto.org on port 1883
 
 //function declaraation
 var mqttPublish = (topic, msg) => {
@@ -29,7 +29,7 @@ server.route([
       reply(deviceInfo);
       mqttPublish('device/control', deviceInfo, { //Publish the device info ot the topic which the ESP is subscribed to.
         'qos' : 2
-      });
+        });
     }
   }
 ]);
