@@ -1,11 +1,10 @@
 const Hapi = require('hapi'); //Fetch the modules required to set up the server
 const mqtt = require('mqtt'); //Fetch the modules required to establish the MQTT protocol
-const mongodb = require('mongodb');
+const file = require('./file-system');
 
+const mongo = require('./mongo');
 
-var mongodClient = mongodb.MongoClient;
-var mongodbURI = 'mongodb://super:abcd@ds157288.mlab.com:57288/heroku_8wjc36dr';
-
+fs.writeFileSync
 var server = new Hapi.Server(); //Set up a new Server
 var port = Number(process.env.PORT || 4444); //Define the port no. NOTE: The default is 4444 for local servers otherwiser it is set by default from Heroku
 
@@ -30,36 +29,26 @@ server.route([
     method: 'POST',
     path: '/device/control',
     handler: (request, reply) => {
-      var deviceInfo = 'dev' + request.payload.deviceNum + '-' + request.payload.command; //eg - 'dev1-on'
-      console.log(deviceInfo);
-
-      // db.collection.insert(request.payload);
-      // db.collection.insert(request.payload.command);
-
+      var deviceNumber = request.payload.deviceNum;
+      var command = request.payload.command;
+      var deviceInfo = `dev${deviceNumber}-${command}`; //eg - 'dev1-on'
+      // console.log(deviceInfo);
       reply(deviceInfo);
+      console.log(deviceInfo);
       mqttPublish('device/control', deviceInfo, { //Publish the device info ot the topic which the ESP is subscribed to.
         'qos' : 2
         });
-
-
-        // console.log(deviceInfo);
-        mongodClient.connect(mongodbURI, (err, db) => {
-          if(!err) {
-            console.log("Connected..");
-            var collection = db.collection('device-state');
-            var deviceParam = {
-              deviceNum : request.payload.deviceNum,
-              command : request.payload.command,
-              time: new Date()
-            }
-            collection.insert([deviceParam]);
-          }else {
-            console.log("Error");
-          }
-        });
-
-
-    }
+      // console.log(deviceInfo);
+      //Save the data to the connected MongoDB (mLAb)
+      if(mongo.updateDB(deviceNumber, command)){ //If data saved succesfully
+        console.log("Saved to the database successfully");
+      }
+      else {
+        console.log("Error while saving to the database");
+      }
+      var savedData = mongo.JSONformatter(deviceNumber,command);
+      file.saveData(savedData);
+    }// end of handler
   }
 ]);
 
