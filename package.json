@@ -12,6 +12,7 @@
   "dependencies": {
     "fs": "0.0.1-security",
     "hapi": "^8.4.0",
+    "lodash": "^4.17.4",
     "mongodb": "^2.2.19",
     "mqtt": "^1.14.1",
     "request": "^2.79.0"

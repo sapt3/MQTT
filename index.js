@@ -4,7 +4,6 @@ const file = require('./file-system');
 
 const mongo = require('./mongo');
 
-fs.writeFileSync
 var server = new Hapi.Server(); //Set up a new Server
 var port = Number(process.env.PORT || 4444); //Define the port no. NOTE: The default is 4444 for local servers otherwiser it is set by default from Heroku
 
