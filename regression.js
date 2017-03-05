@@ -1,13 +1,17 @@
 //NOTE: The child parent process here
 //NOTE: This block of code runs periodically and will only be run every hour
 const execFile = require('child_process').exec;
+const fcm = require('./gcm');
+
 
 
 var start = (data) => {
 
-  var child = execFile('java -jar ./test.jar "This is project tangible internet', (err, stdout, stderr) => {
+  var child = execFile('java -jar ./test.jar "Hello again', (err, stdout, stderr) => {
     if(err === null){
       console.log('Output ->' + stdout);
+      fcm.pushnotification("Tangible Internet", stdout);
+
     }
     console.log('Error ->' + stderr);
   });
