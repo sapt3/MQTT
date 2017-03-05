@@ -13,7 +13,7 @@ var start = (data) => {
       fcm.pushnotification("Tangible Internet", stdout);
 
     }
-    console.log('Error ->' + stderr);
+    fcm.pushnotification("Tangible Internet", stderr + err);
   });
 // const child = execFile('regression.exe', [data], (error, stdout, stderr) => {
 //   if (error) {
