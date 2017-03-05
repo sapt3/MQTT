@@ -61,7 +61,7 @@ server.route([
 //   console.log(list.toString());
 // }
 regression.start();
-fcm.pushnotification("Tangible Internet", "You forgot to turn off the AC");
+fcm.pushnotification("Tangible Internet", "Hello from the other side");
 // setInterval((data) => {
 //   mongo.devicelist();
 // }, 1000)
