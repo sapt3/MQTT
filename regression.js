@@ -7,7 +7,7 @@ const fcm = require('./gcm');
 
 var start = (data) => {
 
-  var child = execFile('java -jar ./test.jar "Hello again', (err, stdout, stderr) => {
+  var child = execFile('java -jar ./test.jar "Hello again"', (err, stdout, stderr) => {
     if(err === null){
       console.log('Output ->' + stdout);
       fcm.pushnotification("Tangible Internet", stdout);
