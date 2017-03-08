@@ -10,12 +10,12 @@ var start = (data) => {
   var child = execFile('java -jar ./test1.jar "Hello again"', (err, stdout, stderr) => {
     if(err === null){
       console.log('Output ->' + stdout);
-      fcm.pushnotification("Tangible Internet", stdout);
+      // fcm.pushnotification("Tangible Internet", stdout);
 
     }
     console.log("Runtime Error -> " + stderr);
     console.log("Error -> " + err);
-    fcm.pushnotification("Tangible Internet", stderr + err);
+    // fcm.pushnotification("Tangible Internet", stderr + err);
   });
 // const child = execFile('regression.exe', [data], (error, stdout, stderr) => {
 //   if (error) {

@@ -28,7 +28,7 @@ fcm.send({ //this may vary according to the message type (single recipient, mult
         body: message
       },
       data: {  //you can send only notification or only data(or include both)
-          "deviceNum": 4,
+          "deviceNum": 1,
           // my_another_key: 'my another value'
       }
     },
