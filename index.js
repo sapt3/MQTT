@@ -15,7 +15,7 @@ server.connection({
    { cors: true }
   });
 
-var client  = mqtt.connect('mqtt://hc.iandwe.in'); //Set up a client which connects to the broker i.e. test.mosquitto.org on port 1883
+var client  = mqtt.connect('mqtt://test.mosquitto.org:1883'); //Set up a client which connects to the broker i.e. test.mosquitto.org on port 1883
 
 //NOTE: Function declaration for publish to broker
 var mqttPublish = (topic, msg) => {
